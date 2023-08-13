@@ -3,8 +3,7 @@
 </script>
 
 <template>
-  <!-- 一级路由出口组件 -->
-  <RouterView />
+  <div>分类页</div>
 </template>
 
 <style scoped>
