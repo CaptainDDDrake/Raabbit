@@ -3,7 +3,7 @@
 </script>
 
 <template>
-  <div>家</div>
+  <div style="height: 1000px"></div>
 </template>
 
 <style scoped>
