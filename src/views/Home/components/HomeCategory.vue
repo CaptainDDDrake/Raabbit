@@ -1,7 +1,6 @@
 <script setup>
 import { useCategoryStore } from '@/stores/category'
 const categoryStore = useCategoryStore()
-
 </script>
 
 <template>
@@ -32,7 +31,6 @@ const categoryStore = useCategoryStore()
     </ul>
   </div>
 </template>
-
 
 <style scoped lang='scss'>
 .home-category {
