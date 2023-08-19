@@ -17,9 +17,16 @@ onMounted(
 </script>
 
 <template>
+  <LayoutFixed />
   <LayoutNav />
   <LayoutHeader />
+  <!-- 添加key 破坏复用机制 强制销毁重建 -->
+  <!-- 
+    问题：所有的组件都会销毁重建
+    轮播图以及下面的购物板都会重建，问题是轮播图不需要重复请求
+    解决方案：只发起 banner 请求即可，而不用多次请求category
+   -->
+  <!-- <RouterView :key="$route.fullPath"/> -->
   <RouterView />
   <LayoutFooter />
-  <LayoutFixed />
 </template>
