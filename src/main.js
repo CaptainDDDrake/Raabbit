@@ -15,3 +15,4 @@ app.use(router)
 app.use(lazyPlugin)
 app.mount('#app')
 
+
