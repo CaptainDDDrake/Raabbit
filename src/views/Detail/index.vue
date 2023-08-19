@@ -15,9 +15,10 @@ onMounted(() => getGoods())
 
 <template>
   <div class="xtx-goods-page">
-    <div class="container">
-      <!-- <div class="bread-container" v-if="goods.details"> -->
+    <!-- 采取 v-if 处理对象的多层属性访问问题 -->
+    <div class="container" v-if="goods.details">
       <div class="bread-container">
+      <!-- <div class="bread-container"> -->
         <el-breadcrumb separator=">">
           <!-- 
             错误原因：goods一开始{} {}.categories -> undefined -> undefined[1]
@@ -25,9 +26,9 @@ onMounted(() => getGoods())
             2. v-if手动控制渲染时机 保证只有数据存在才渲染
            -->
           <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: `/category/${goods.categories?.[1].id}` }"> {{ goods.categories?.[1].name }}
+          <el-breadcrumb-item :to="{ path: `/category/${goods.categories[1].id}` }"> {{ goods.categories?.[1].name }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories?.[0].id}` }">{{ goods.categories?.[0].name }}
+          <el-breadcrumb-item :to="{ path: `/category/sub/${goods.categories[0].id}` }">{{ goods.categories?.[0].name }}
           </el-breadcrumb-item>
           <el-breadcrumb-item>抓绒保暖，毛毛虫子儿童运动鞋</el-breadcrumb-item>
         </el-breadcrumb>
