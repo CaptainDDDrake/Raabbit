@@ -22,15 +22,15 @@ const TYPEMAP = {
 
 const title = computed(() => TYPEMAP[props.hotType])
 
- const hotList = ref([])
- const route = useRoute()
- const getHotList = async () => {
-  const res = await getHotGoodsAPI({
-    id: route.params.id,
-    type: props.hotType
-  })
-  hotList.value = res.result
- }
+const hotList = ref([])
+const route = useRoute()
+const getHotList = async () => {
+const res = await getHotGoodsAPI({
+  id: route.params.id,
+  type: props.hotType
+})
+hotList.value = res.result
+}
 onMounted(() => getHotList())
 </script>
 
