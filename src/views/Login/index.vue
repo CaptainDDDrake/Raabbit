@@ -1,6 +1,9 @@
 <script setup>
 import { ref } from 'vue';
-
+import { loginAPI } from '@/apis/user'
+import { ElMessage } from 'element-plus'
+import 'element-plus/theme-chalk/el-message.css'
+import { useRouter } from 'vue-router';
 // 表单校验 （账号名+密码）
 
 // 1. 准备表单对象
@@ -37,14 +40,26 @@ const rules = {
 
 // 3. 获取form实例做统一校验
 const formRef = ref(null)
+const router = useRouter() // useRouter会返回一个实例对象
 const doLogin = () => {
+  const { account, password } = form.value
   // 调用实例方法
-  formRef.value.validate((valid) => {
+  // 这里为什么需要 .value , 是因为它的数据类型是 ref 
+  formRef.value.validate(async (valid) => {
     // valid: 所有表单都通过校验 才为true
-    console.log(valid)
+    // console.log(valid)
     // 以valid作为判断条件 如果通过校验才执行登陆逻辑
     if (valid) {
       // TODO LOGIN
+      const res = await loginAPI({account, password})
+      console.log(res)
+      // 1. 提示用户
+      ElMessage({type: 'success', message: '登陆成功'})
+      // 2. 跳转首页
+      /**
+       * 这里有 push 和 replace 两种用法，这里建议用replace，因为它可以防止用户反复地返回登陆页
+       */
+      router.replace({path: '/'})
     }
   })
 }
