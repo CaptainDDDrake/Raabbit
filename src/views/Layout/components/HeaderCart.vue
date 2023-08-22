@@ -1,12 +1,12 @@
 <script setup>
 import { useCartStore } from '@/stores/cartStore';
-const cartStore = useCartStore()
+const cartStore = useCartStore() 
 </script>
 
 <template>
   <div class="cart">
     <a class="curr" href="javascript:;">
-      <i class="iconfont icon-cart"></i><em>2</em>
+      <i class="iconfont icon-cart"></i><em>{{ cartStore.cartList.length }}</em>
     </a>
     <div class="layer">
       <div class="list">
