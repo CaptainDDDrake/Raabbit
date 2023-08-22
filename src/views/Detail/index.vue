@@ -39,7 +39,7 @@ const addCart = () => {
       picture: goods.value.mainPictures[0], 
       price: goods.value.price, 
       count: count.value, // 商品数量
-      skuId: skuObj.skuld,
+      skuId: skuObj.skuId, // 这里的I老是容易写错
       attrsText: skuObj.specsText, 
       selected: true  // 商品是否选中
     })
