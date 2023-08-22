@@ -6,6 +6,17 @@ import { ref, computed } from 'vue'
 export const useCartStore = defineStore('cart', () => {
   // 1. 定义state - cartList
   const cartList = ref([])
+  
+  // cartList 中的数据
+  // id: goods.value.id, 
+  // name: goods.value.name,
+  // picture: goods.value.mainPictures[0], 
+  // price: goods.value.price, 
+  // count: count.value, // 商品数量
+  // skuId: skuObj.skuId, // 这里的I老是容易写错
+  // attrsText: skuObj.specsText, 
+  // selected: true  // 商品是否选中
+
   // 2. 定义action - addCart
   const addCart = (goods) => {
     // 添加购物车操作
@@ -30,6 +41,13 @@ export const useCartStore = defineStore('cart', () => {
     cartList.value = cartList.value.filter(item => item.skuId !== skuId)
   }
 
+  // 单选功能
+  const singleCheck = (skuId, selected) => {
+    // 通过skuId找到要修改的那一项 然后把它的selected修改为传过来的 selected
+    const item = cartList.value.find((item) => item.skuId === skuId)
+    item.selected = selected
+  }
+
   // 计算属性
   // 1. 总的数量 所有项的count之和
   const allCount = computed(() => cartList.value.reduce((a, c) => a + c.count, 0))
@@ -41,7 +59,8 @@ export const useCartStore = defineStore('cart', () => {
     allCount,
     allPrice,
     addCart,
-    delCart
+    delCart,
+    singleCheck
   }
 }, {
   persist: true,
