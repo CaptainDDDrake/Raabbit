@@ -21,9 +21,18 @@ export const useCartStore = defineStore('cart', () => {
       cartList.value.push(goods)
     }
   }
+  // 删除购物车
+  const delCart = (skuId) => {
+    // 1-采用 Splice 实现
+    // const index = cartList.value.findIndex((item) => skuId === item.skuId)
+    // cartList.value.splice(index, 1)
+    // 2-采用 filter 实现
+    cartList.value = cartList.value.filter(item => item.skuId !== skuId)
+  }
   return {
     cartList,
-    addCart
+    addCart,
+    delCart
   }
 }, {
   persist: true,
