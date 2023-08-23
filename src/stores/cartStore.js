@@ -98,7 +98,6 @@ export const useCartStore = defineStore('cart', () => {
   //4. 已选择商品价钱合集
   const selectedPrice = computed(() => cartList.value.filter(item => item.selected).reduce((a, c) => a + c.count * c.price, 0))
 
-
   return {
     cartList,
     allCount,
@@ -109,6 +108,7 @@ export const useCartStore = defineStore('cart', () => {
     delCart,
     singleCheck,
     clearCart,
+    updateNewList,
     selectedCount,
     selectedPrice
   }
